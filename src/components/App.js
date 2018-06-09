@@ -15,7 +15,7 @@ class App extends Component {
         ) : (
           <div>
             {repositories.viewer.starredRepositories.nodes.map(repository => (
-              <Repository repository={repository} key={repository.id} />
+              <Repository repository={repository} key={repository.owner.login + repository.name} />
             ))}
           </div>
         )}
@@ -25,14 +25,16 @@ class App extends Component {
 }
 
 const query = gql`
-  query Hoge {
+  {
     viewer {
       starredRepositories(first: 10) {
         nodes {
-          id
           name
           owner {
             login
+          }
+          stargazers {
+            totalCount
           }
         }
       }
