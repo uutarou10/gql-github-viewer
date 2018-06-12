@@ -33,6 +33,7 @@ const query = gql`
           owner {
             login
           }
+          description
           stargazers {
             totalCount
           }
